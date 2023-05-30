@@ -69,6 +69,14 @@ export class TimeWeightedVectorStoreRetriever extends BaseRetriever {
     this.otherScoreKeys = fields.otherScoreKeys ?? [];
     this.defaultSalience = fields.defaultSalience ?? null;
   }
+  
+  /**
+   * public accessor for memoryStream (helpful when working with generative agents)
+   * @returns this.memoryStream
+   */
+  get getMemoryStream(): Document[] => {
+    return this.memoryStream;
+  }
 
   /**
    * Get relevant documents based on time-weighted relevance
