@@ -1,9 +1,9 @@
 import { LLMChain } from "../../chains/llm_chain.js";
 import { PromptTemplate } from "../../prompts/index.js";
-import { BaseLLM } from "../../llms/base.js";
 import { Document } from "../../document.js";
 import { TimeWeightedVectorStoreRetriever } from "../../retrievers/time_weighted.js";
 import { BaseMemory, InputValues, OutputValues } from "../../memory/base.js";
+import { BaseLanguageModel } from "../../base_language/index.js";
 
 export type GenerativeAgentMemoryConfig = {
   reflectionThreshold?: number;
@@ -13,7 +13,7 @@ export type GenerativeAgentMemoryConfig = {
 };
 
 export class GenerativeAgentMemory extends BaseMemory {
-  llm: BaseLLM;
+  llm: BaseLanguageModel;
 
   memoryRetriever: TimeWeightedVectorStoreRetriever;
 
@@ -46,7 +46,8 @@ export class GenerativeAgentMemory extends BaseMemory {
   reflecting = false;
 
   constructor(
-    llm: BaseLLM,
+    // llm: BaseLLM,
+    llm: BaseLanguageModel,
     memoryRetriever: TimeWeightedVectorStoreRetriever,
     config?: GenerativeAgentMemoryConfig
   ) {
